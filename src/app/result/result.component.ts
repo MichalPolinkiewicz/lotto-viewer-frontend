@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LottoViewerClientService } from '../lotto-viewer-client.service';
 
 @Component({
   selector: 'app-result',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./result.component.css']
 })
 export class ResultComponent implements OnInit {
+  results: Object
+  result: Object
+  selected: string;
 
-  constructor() { }
+  constructor(private service: LottoViewerClientService) { }
 
   ngOnInit() {
+    this.service.getResults().subscribe(r => this.results = r)
   }
 
+  onSelectedGame(){
+    this.service.getResult(this.selected).subscribe(r => this.result = r)
+  }
 }

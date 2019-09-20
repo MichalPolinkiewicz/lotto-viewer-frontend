@@ -14,10 +14,8 @@ export class ResultsComponent implements OnInit {
 
   ngOnInit() {
     this.service.getResults().subscribe(r => this.results = r);
-    console.log("results fetched");
   }
 
   logResults(){
-    console.log(this.results);
   }
 }

@@ -12,7 +12,9 @@ export class LottoViewerClientService {
     return this.httpClient.get('http://localhost:9091/results');
   }
 
-  getGameResult(){}
+  getResult(id: string){
+    return this.httpClient.get('http://localhost:9091/results/'+ id)
+  }
 
   checkNumbers(){}
 }
