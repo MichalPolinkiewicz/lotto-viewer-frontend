@@ -1,0 +1,12 @@
+<div class="row">
+    <button (click)="logResults()" class="button btn-primary">Click</button>
+
+    <ul *ngIf="results">
+        <p>{{results}}</p>
+
+        <!-- <li *ngFor="let r of results.Results">
+            <p>{{r.date}}</p>
+            <p>dddd</p>
+        </li> -->
+    </ul>
+</div>
