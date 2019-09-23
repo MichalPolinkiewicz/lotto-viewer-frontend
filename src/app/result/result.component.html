@@ -3,17 +3,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="section-header">Wybierz gre:</h2>
-            <hr>
             </div>
         </div>
-        <br>
         <div class="aaa">
             <div class="row" *ngIf="results">
                 <div class="col-lg-12">
-                    <select class="form-control form-control-lg" name="selected" [(ngModel)]="selected">
-                        <option *ngFor="let r of results" value="{{r.id}}">{{r.name}}</option>
+                    <select class="form-control form-control-lg" name="selected" [(ngModel)]="selected" [ngClass]="result ? 'yellow-border' : ''">
+                        <option *ngFor="let r of results" value="{{r.id}}" >{{r.name}}</option>
                     </select>
-                    <br>
                     <button class="btn btn-primary" type="submit" (click)="onSelectedGame()">Sprawdź</button>
                 </div>
             </div>
@@ -24,9 +21,8 @@
 
     <div class="row" *ngIf="result">
         <div class="col-lg-12">
-            <h2 class="section-header">Losowanie {{result.name}} z {{result.date}}:</h2>
-            <hr>
-            <p class="resultParagraph">Wyniki: {{result.results}}</p>
+            <h2 class="section-header">Wyniki <span class="yellow-text">{{result.name}}</span> z {{result.date}}:</h2>
+            <p class="resultParagraph">{{result.results}}</p>
             <p *ngIf="result.extra" class="resultParagraph">Extra: {{result.extra}}</p>
         </div>
     </div>

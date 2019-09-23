@@ -5,21 +5,19 @@
             <h2 class="section-header">Wybierz gre:</h2>
         </div>
     </div>
-    <br>
 
-   <div class="aaa">
-       <div class="row" *ngIf="results">
-        <div class="col-lg-12">
-            <select class="form-control form-control-lg" name="selected" [(ngModel)]="selected">
-                <option *ngFor="let r of results" value="{{r.id}}">{{r.name}}</option>
-            </select>
-            <br>
-            <button class="btn btn-primary" type="submit" (click)="onSelectedGame()">Wybierz</button>
+    <div class="aaa">
+        <div class="row" *ngIf="results">
+            <div class="col-lg-12">
+                <select class="form-control form-control-lg" name="selected" [(ngModel)]="selected" [ngClass]="numbersOfInput > -1 ? 'yellow-border' : ''">
+                    <option *ngFor="let r of results" value="{{r.id}}">{{r.name}}</option>
+                </select>
+                <button class="btn btn-primary" type="submit" (click)="onSelectedGame()">Wybierz</button>
+            </div>
         </div>
+
     </div>
 
-   </div>
-    
     <br>
 
     <div class="row">
@@ -28,42 +26,42 @@
                 <h2 class="section-header">Brak gier</h2>
             </div>
         </ng-template>
-
     </div>
 
 
-        <div class="row">
+    <div class="row">
         <div class="col-lg-12" *ngIf="numbersOfInput != -1">
             <h2 class="section-header">Wprowadź swoje numery:</h2>
         </div>
-        </div>
-    
+    </div>
+
     <div class="aaa">
         <div class="row" *ngIf="numbersOfInput != -1">
-                <div class="col-sm-12">
-                        <form [formGroup]="messageForm" (ngSubmit)="onCheckGame()">
-                        <div formArrayName="userNumbers">
-                            <div *ngFor="let n of userNumbers.controls; let i = index">
-                                <input type="number" placeholder="liczba {{i + 1}}" class="form-control" formControlName="{{i}}">
-                            </div>
+            <div class="col-sm-12">
+                <form [formGroup]="messageForm" (ngSubmit)="onCheckGame()">
+                    <div formArrayName="userNumbers">
+                        <div *ngFor="let n of userNumbers.controls; let i = index">
+                            <input type="number" placeholder="liczba {{i + 1}}" class="form-control" [ngClass]="checked ? 'yellow-border' : ''"
+                                formControlName="{{i}}">
                         </div>
-                        <br>
-                        <button class="btn btn-primary" type="submit" (click)="onCheckGame">Sprawdź</button>
-                        </form>
-                </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit" (click)="onCheckGame">Sprawdź</button>
+                </form>
             </div>
+        </div>
     </div>
-    
 
 
-    <div class=aaa>
-        <div class="row">
+
+
+    <div class="row">
         <div class="col-lg-12" *ngIf="counts && checked">
-            <h3 class="section-header">Trafienia: </h3>
-        </div>
+            <h3 class="section-header">Trafienia z {{counts.Date}}: </h3>
+            <p class="resultParagraph">{{counts.Matches}}</p>
         </div>
     </div>
-    
+
+
 
 
     <!-- <div class="aaa" *ngIf="checked && !counts">
@@ -73,6 +71,6 @@
             </div>
         </div> 
     </div> -->
-    
+
 
 </div>
