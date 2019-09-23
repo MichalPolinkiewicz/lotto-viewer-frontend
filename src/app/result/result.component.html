@@ -21,7 +21,7 @@
 
     <div class="row" *ngIf="result">
         <div class="col-lg-12">
-            <h2 class="section-header">Wyniki <span class="yellow-text">{{result.name}}</span> z {{result.date}}:</h2>
+            <h2 class="section-header">Wyniki <span class="yellow-text">{{result.name}}</span> z {{result.date}}<span *ngIf="result.hour">, {{result.hour}}</span>:</h2>
             <p class="resultParagraph">{{result.results}}</p>
             <p *ngIf="result.extra" class="resultParagraph">Extra: {{result.extra}}</p>
         </div>
