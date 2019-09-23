@@ -16,6 +16,6 @@ export class ResultsComponent implements OnInit {
     this.service.getResults().subscribe(r => this.results = r);
   }
 
-  logResults(){
+  logResults() {
   }
 }
