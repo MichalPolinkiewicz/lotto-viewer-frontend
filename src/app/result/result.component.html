@@ -3,24 +3,31 @@
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="section-header">Wybierz gre:</h2>
+            <hr>
             </div>
         </div>
         <br>
-        <div class="row" *ngIf="results">
-            <div class="col-lg-12">
-                <select class="form-control form-control-lg" name="selected" [(ngModel)]="selected">
-                    <option *ngFor="let r of results" value="{{r.id}}">{{r.name}}</option>
-                </select>
-                <button class="btn btn-primary" type="submit" (click)="onSelectedGame()">Sprawdź</button>
+        <div class="aaa">
+            <div class="row" *ngIf="results">
+                <div class="col-lg-12">
+                    <select class="form-control form-control-lg" name="selected" [(ngModel)]="selected">
+                        <option *ngFor="let r of results" value="{{r.id}}">{{r.name}}</option>
+                    </select>
+                    <br>
+                    <button class="btn btn-primary" type="submit" (click)="onSelectedGame()">Sprawdź</button>
+                </div>
             </div>
         </div>
-        <br>
-        <div class="row" *ngIf="result">
-            <div class="col-lg-12">
-                <h2>Wyniki {{result.name}} z {{result.date}}:</h2>
-                <p>{{result.results}}</p>
-                <p>{{result.extra}}</p>
-            </div>
+    </div>
+
+    <br>
+
+    <div class="row" *ngIf="result">
+        <div class="col-lg-12">
+            <h2 class="section-header">Losowanie {{result.name}} z {{result.date}}:</h2>
+            <hr>
+            <p class="resultParagraph">Wyniki: {{result.results}}</p>
+            <p *ngIf="result.extra" class="resultParagraph">Extra: {{result.extra}}</p>
         </div>
     </div>
 

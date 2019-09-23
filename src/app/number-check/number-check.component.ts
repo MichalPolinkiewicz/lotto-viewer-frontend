@@ -13,6 +13,7 @@ export class NumberCheckComponent implements OnInit {
   results: Object
   selected: number;
   numbersOfInput: number = -1;
+  checked: boolean = false;
 
   counts: Object
 
@@ -57,7 +58,9 @@ export class NumberCheckComponent implements OnInit {
     if (this.messageForm.invalid) {
       return
     }
+    this.checked = true;
     this.service.checkNumbers(this.selected.toString(), this.messageForm.value.userNumbers).subscribe(n => this.counts = n)
+    
     console.log('counts: ' + this.counts)
   }
 

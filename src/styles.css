@@ -3,4 +3,31 @@
     margin-top: 15px;
     margin-bottom: 15px;
     padding: 5px;
+    text-align: center;
+}
+
+.numbersCheckInput {
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+.numbersCheckInput {
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+.aaa {
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+.btn {
+    margin-left: 25%;
+    width: 50%;
+}
+
+.resultParagraph {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
 }
