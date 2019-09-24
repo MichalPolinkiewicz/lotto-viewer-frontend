@@ -1,8 +1,9 @@
 <div class="container">
+
     <div *ngIf="results; else noResults">
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="section-header">Wszystkie losowania:</h2>
+                <h4 class="section-header">Wszystkie losowania:</h4>
                 <hr>
             </div>
             <div class="col-lg-12" *ngIf="results">
@@ -27,9 +28,17 @@
             </div>
         </div>
     </div>
+
+
+
     <ng-template #noResults>
-        <div class="col-lg-12">
-            <h2 class="section-header">Brak wyników</h2>
+        <div class="row">
+            <div class="col-lg-12">
+            <h2 class="section-header-red">Brak wyników</h2>
+        </div>
         </div>
     </ng-template>
+
+
+
 </div>

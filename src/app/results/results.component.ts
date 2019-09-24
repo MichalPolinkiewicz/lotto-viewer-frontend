@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LottoViewerClientService } from '../lotto-viewer-client.service';
 
 @Component({
@@ -7,7 +7,6 @@ import { LottoViewerClientService } from '../lotto-viewer-client.service';
   styleUrls: ['./results.component.css']
 })
 export class ResultsComponent implements OnInit {
-
   results: Object;
 
   constructor(private service: LottoViewerClientService) { }

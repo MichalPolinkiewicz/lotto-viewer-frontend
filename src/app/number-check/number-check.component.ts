@@ -9,59 +9,86 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractCon
 })
 export class NumberCheckComponent implements OnInit {
 
+  messageForm: FormGroup
   numbers: Object
   results: Object
   selected: number;
   numbersOfInput: number = -1;
+  numbersOfExtraInput: number = -1;
   checked: boolean = false;
-
-  counts: Object
+  invalid: boolean = false;
+  counts: Object;
 
   inputNumberForGame: { [key: number]: number } = {
     0: 6, //lotto
-    1: 4,
-    2: 8
+    1: 4, //lotto plus
+    2: 0, //mini
+    3: 0, //kaskada 1
+    4: 0,  // kaskada 2
+    5: 0, //mm1
+    6: 0, //mm2
+    7:2, //extra pensja
+    8: 0, //ss1
+    9:0, //ss2
+    10:5, //ej
   }
 
-  messageForm: FormGroup
+  extraInputNumberForGame: {[key:number]:number} = {
+    7 : 1,
+    10: 2,
+    5: 1,
+    6: 1
+  }
 
   constructor(private service: LottoViewerClientService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
     this.service.getResults().subscribe(r => this.results = r)
+    this.checked = false;
+    this.invalid = false;
   }
 
   get userNumbers(): FormArray { return this.messageForm.get('userNumbers') as FormArray; }
+  get extraNumbers(): FormArray {return this.messageForm.get('extraNumbers') as FormArray;}
 
   onSelectedGame() {
     this.numbersOfInput = this.inputNumberForGame[this.selected]
+    this.numbersOfExtraInput = this.extraInputNumberForGame[this.selected]
+    
+    this.invalid = false;
+    this.checked = false;
+    
     this.messageForm = this.formBuilder.group({
       userNumbers: new FormArray(
-        this.createUserInputsArray(),
+        this.createUserInputsArray(this.numbersOfInput),
         Validators.required),
+        
+        extraNumbers: new FormArray(
+          this.createUserInputsArray(this.numbersOfExtraInput),
+          Validators.required
+        )
     });
-    console.log(this.numbersOfInput)
   }
 
-  createUserInputsArray() {
+  createUserInputsArray(size: number) {
     let out = []
     let i = 0
-    while (i < this.numbersOfInput) {
-      out.push(new FormControl());
+    while (i < size) {
+      out.push(new FormControl('', Validators.required));
       i++
     }
     return out;
   }
 
   onCheckGame() {
-    if (this.messageForm.invalid) {
+    if (this.messageForm.value.userNumbers.invalid || this.messageForm.value.extraNumbers.invalid)  {
+      this.invalid = true;
       return
     }
     this.checked = true;
-    this.service.checkNumbers(this.selected.toString(), this.messageForm.value.userNumbers).subscribe(n => this.counts = n)
-    
-    console.log('counts: ' + this.counts)
+    this.invalid = false;
+    this.service.checkNumbers(this.selected.toString(), this.messageForm.value.userNumbers, this.messageForm.value.extraNumbers).subscribe(n => this.counts = n)
   }
 
 }
