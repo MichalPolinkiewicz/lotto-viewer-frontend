@@ -16,15 +16,14 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <ng-template #noGames>
+    
+    <ng-template #noGames>
+        <div class="row">
             <div class="col-lg-12">
                 <h2 class="section-header-red">Brak gier</h2>
             </div>
-        </ng-template>
-    </div>
-
+        </div>
+    </ng-template>
 
     <div class="row">
         <div class="col-lg-12" *ngIf="numbersOfInput != -1">
@@ -40,7 +39,6 @@
                     <div formArrayName="userNumbers">
                         <div *ngFor="let n of userNumbers.controls; let i = index">
                             <input type="number" placeholder="liczba {{i + 1}}" class="form-control"
-                                [ngClass]="checked && !invalid ? 'yellow-border' : invalid ? 'red-border' : '' "
                                 formControlName="{{i}}">
                         </div>
                     </div>
@@ -49,7 +47,7 @@
                         <h4 class="section-header">Extra cyfry:</h4>
                         <div *ngFor="let n of extraNumbers.controls; let i = index">
                             <input type="number" placeholder="extra {{i + 1}}" class="form-control"
-                                [ngClass]="checked && !invalid ? 'yellow-border' : invalid ? 'red-border' : '' "
+                                
                                 formControlName="{{i}}">
                         </div>
                     </div>
@@ -60,7 +58,7 @@
     </div>
 
 
-    <div class="row">
+        <div class="row">
         <div class="col-lg-12" *ngIf="checked && counts.Matches == null && counts.Extra == null; else noCounts">
             <h2 class="section-header-red">Brak trafień</h2>
         </div>

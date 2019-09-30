@@ -82,7 +82,8 @@ export class NumberCheckComponent implements OnInit {
   }
 
   onCheckGame() {
-    if (this.messageForm.value.userNumbers.invalid || this.messageForm.value.extraNumbers.invalid)  {
+    if (this.messageForm.value.userNumbers.invalid | this.messageForm.value.extraNumbers.invalid)  {
+      console.log("invalid33")
       this.invalid = true;
       return
     }
